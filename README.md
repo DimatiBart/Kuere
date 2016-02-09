@@ -1,2 +1,2 @@
 # Kuere
-kursach
+Super-heroic MEAN - stack app
