@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = {
     entry: './public/javascripts/ng-app.js',
     output: {

@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app">
   <head>
     <title>Kuere</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="dist/bundle.js"></script>
   </head>
   <body>
+  <header>
+    <nav ng-controller="NavCtrl">
+      <ul>
+        <li ng-show="isLoggedIn()">Ты зашёл</li>
+        <li ng-show="!isLoggedIn()">Ты не зашёл</li>
+        <li ng-show="isLoggedIn()" ng-click="logout()">Выйти</li>
+      </ul>
+    </nav>
+  </header>
     <h1>Welcommen!</h1>
     <p>Welcome to HUKuere</p>
+    <ui-view></ui-view>
   </body>
 </html>
