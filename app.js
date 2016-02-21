@@ -1,28 +1,35 @@
-var express = require('express');
-var session = require('express-session');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
+var express 		 = require('express');
+var session 		 = require('express-session');
+var path 				 = require('path');
+var favicon 		 = require('serve-favicon');
+var logger 			 = require('morgan');
 var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var bodyParser 	 = require('body-parser');
 
-var mongoose = require('mongoose');
+var mongoose 		 = require('mongoose');
 
-var routes = require('./routes/index');
+/*
+ * Routes
+ */
 
-var mongoose = require('mongoose');
-var passport = require('passport');
+var routes 			 = require('./app/routes/index');
+var auth 				 = require('./app/routes/auth');
+
+var mongoose 		 = require('mongoose');
+
+/*
+ * Passport init
+ */
+
+var passport 		 = require('passport');
+
 var LocalStrategy = require('passport-local').Strategy;
-require('./config/passport.config.js');
-
-
-//
-var auth = require('./routes/auth');
+require('./app/config/passport.config.js');
 
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'app/views'));
 app.set('view engine', 'ejs');
 
 // uncomment after placing your favicon in /public

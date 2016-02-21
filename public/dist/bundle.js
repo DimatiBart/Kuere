@@ -44,17 +44,33 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	/*
+	 * Module dependencies
+	 */
+
 	__webpack_require__(1);
 	__webpack_require__(3);
 
+	/*
+	 * Expose
+	 */
+
+	// Initializing app
 	angular.module('app', ['ui.router', __webpack_require__(4)]);
 
+	// Configs
 	__webpack_require__(6);
 
+	// Directives
+
+
+	// Controllers
 	__webpack_require__(7);
 	__webpack_require__(8);
 
+	// Services
 	__webpack_require__(9);
+
 
 /***/ },
 /* 1 */
@@ -35381,141 +35397,167 @@
 /* 6 */
 /***/ function(module, exports) {
 
-	angular.module('app').config(['$stateProvider', '$urlRouterProvider', function ($stateProvider, $urlRouterProvider){
-	    $urlRouterProvider.otherwise('/');
-	    $stateProvider
-	        .state ('index',{
-	            url: '/',
-	            templateUrl: 'templates/index.html',
-	            controller: 'AuthCtrl',
-	            onEnter: [ '$state', 'AuthSvc', function ($state, AuthSvc) {
-	                if (AuthSvc.isLoggedIn()) {
-	                    $state.go('home');
-	                };
-	            }]
-	        })
-	        .state ('register',{
-	            url:'/register',
-	            templateUrl: 'templates/register.html',
-	            controller: 'AuthCtrl',
-	            onEnter: [ '$state', 'AuthSvc', function ($state, AuthSvc) {
-	                if (AuthSvc.isLoggedIn()) {
-	                    $state.go('home');
-	                };
-	            }]
-	        })
-	        .state ('home',{
-	            url:'/home',
-	            templateUrl: 'templates/home.html',
-	            onEnter: [ '$state', 'AuthSvc', function($state, AuthSvc) {
-	                if (!AuthSvc.isLoggedIn()) {
-	                    $state.go('index');
-	                }
-	            }],
-	        })
-	        .state ('logout',{
-	            url:'/logout',
-	            onEnter: ['$state', 'AuthSvc', function($state, AuthSvc) {
-	                if (!AuthSvc.isLoggedIn()) {
-	                    $state.go('index');
-	                }
-	                else {
-	                    AuthSvc.logout();
-	                    $state.go('index');
-	                }
-	            }]
-	        })
-	}])
+	angular.module('app')
+	.config([
+		'$stateProvider',
+		'$urlRouterProvider',
+		function ($stateProvider, $urlRouterProvider) {
+			$urlRouterProvider.otherwise('/');
+			$stateProvider
+				.state ('index',{
+					url: '/',
+					templateUrl: 'templates/index.html',
+					controller: 'AuthCtrl',
+					onEnter: [ '$state', 'AuthSvc', function ($state, AuthSvc) {
+						if (AuthSvc.isLoggedIn()) {
+							$state.go('home');
+						};
+					}]
+				})
+				.state ('register',{
+					url:'/register',
+					templateUrl: 'templates/register.html',
+					controller: 'AuthCtrl',
+					onEnter: [ '$state', 'AuthSvc', function ($state, AuthSvc) {
+						if (AuthSvc.isLoggedIn()) {
+							$state.go('home');
+						};
+					}]
+				})
+				.state ('home',{
+					url:'/home',
+					templateUrl: 'templates/home.html',
+					onEnter: [ '$state', 'AuthSvc', function($state, AuthSvc) {
+						if (!AuthSvc.isLoggedIn()) {
+							$state.go('index');
+						}
+					}],
+				})
+				.state ('logout',{
+					url:'/logout',
+					onEnter: ['$state', 'AuthSvc', function($state, AuthSvc) {
+						if (!AuthSvc.isLoggedIn()) {
+							$state.go('index');
+						}
+						else {
+							AuthSvc.logout();
+							$state.go('index');
+						}
+					}]
+				})
+		}
+	])
+
 
 /***/ },
 /* 7 */
 /***/ function(module, exports) {
 
-	angular.module('app').controller('AuthCtrl', ['$scope', '$state', 'AuthSvc', '$rootScope', function ($scope, $state, AuthSvc, $rootScope){
-	    $scope.user = {};
-	    $scope.register = function () {
-	        if ($scope.user.password !== $scope.user.repPassword) {
-	            $scope.error = {message: 'Passwords Must Match '};
-	            return;
-	        }
-	        AuthSvc.register($scope.user)
-	            .success(function(data){
-	                if ($scope.error) {
-	                    delete $scope.error;
-	                }
-	                $rootScope.success = "Registration successful";
-	            })
-	            .error(function(error){
-	                $scope.error = error;
-	            })
-	            .then (function (){
-	                $state.go('home');
-	            })
-	    }
-	    $scope.logIn = function () {
-	        if ($rootScope.success) {
-	            delete $rootScope.success;
-	        }
-	        AuthSvc.login($scope.user)
-	            .success (function (data){
-	                AuthSvc.setUserCookie(data.id);
-	                $state.go('home');
-	                if ($scope.error) {
-	                    delete $scope.error;
-	                }
-	                if ($rootScope.success) {
-	                    delete $rootScope.success;
-	                }
-	            })
-	            .error(function(error){
-	                $scope.error = error.err;
-	            })
-	    }
-	}])
+	angular.module('app')
+		.controller('AuthCtrl', [
+			'$scope',
+			'$state',
+			'AuthSvc',
+			'$rootScope',
+			function ($scope, $state, AuthSvc, $rootScope) {
+				$scope.user = {};
+				$scope.register = function () {
+					if ($scope.user.password !== $scope.user.repPassword) {
+						$scope.error = {message: 'Passwords Must Match '};
+						return;
+					}
+					AuthSvc.register($scope.user)
+					.success(function(data){
+						if ($scope.error) {
+							delete $scope.error;
+						}
+						$rootScope.success = "Registration successful";
+					})
+					.error(function(error){
+						$scope.error = error;
+					})
+					.then (function (){
+						$state.go('home');
+					})
+				}
+				$scope.logIn = function () {
+					if ($rootScope.success) {
+						delete $rootScope.success;
+					}
+					AuthSvc.login($scope.user)
+					.success (function (data){
+						AuthSvc.setUserCookie(data.id);
+						$state.go('home');
+						if ($scope.error) {
+							delete $scope.error;
+						}
+						if ($rootScope.success) {
+							delete $rootScope.success;
+						}
+					})
+					.error(function(error){
+						$scope.error = error.err;
+					})
+				}
+			}
+		])
+
 
 /***/ },
 /* 8 */
 /***/ function(module, exports) {
 
-	angular.module('app').controller('NavCtrl', ['$scope', 'AuthSvc', function ($scope, AuthSvc){
-	    $scope.logout = AuthSvc.logout;
-	    $scope.isLoggedIn = AuthSvc.isLoggedIn;
-	}]);
+	angular.module('app')
+		.controller('NavCtrl', [
+			'$scope',
+			'AuthSvc',
+			function ($scope, AuthSvc) {
+				$scope.logout = AuthSvc.logout;
+				$scope.isLoggedIn = AuthSvc.isLoggedIn;
+			}
+		]);
+
 
 /***/ },
 /* 9 */
 /***/ function(module, exports) {
 
-	angular.module('app').factory('AuthSvc', ['$http', '$cookies', function($http, $cookies){
-	    return {
-	        isLoggedIn: isLoggedIn,
-	        getUserId: getUserId,
-	        login: login,
-	        logout: logout,
-	        register: register,
-	        setUserCookie: setUserCookie,
-	    };
+	angular.module('app')
+		.factory('AuthSvc', [
+			'$http',
+			'$cookies',
+			function($http, $cookies) {
+				return {
+					isLoggedIn: isLoggedIn,
+					getUserId: getUserId,
+					login: login,
+					logout: logout,
+					register: register,
+					setUserCookie: setUserCookie,
+				};
 
-	    function setUserCookie (id) {
-	        $cookies.put('id', id)
-	    }
-	    function isLoggedIn() {
-	        return $cookies.get('id') ? true : false;
-	    };
-	    function getUserId() {
-	        return $cookies.get('id');
-	    };
-	    function login(userData) {
-	        return $http.post('auth/login', userData);
-	    };
-	    function logout() {
-	        $cookies.remove('id');
-	        $http.get('auth/logout');
-	    };
-	    function register(userData){
-	        return $http.post('auth/register', userData);
-	    };
-	}]);
+				function setUserCookie (id) {
+					$cookies.put('id', id)
+				}
+				function isLoggedIn() {
+					return $cookies.get('id') ? true : false;
+				};
+				function getUserId() {
+					return $cookies.get('id');
+				};
+				function login(userData) {
+					return $http.post('auth/login', userData);
+				};
+				function logout() {
+					$cookies.remove('id');
+					$http.get('auth/logout');
+				};
+				function register(userData){
+					return $http.post('auth/register', userData);
+				};
+			}
+		]);
+
 
 /***/ }
 /******/ ]);
