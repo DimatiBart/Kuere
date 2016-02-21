@@ -3,7 +3,7 @@ angular.module('app')
 		'$scope',
 		'AuthSvc',
 		function ($scope, AuthSvc) {
-			$scope.logout = AuthSvc.logout;
+			//$scope.logout = AuthSvc.logout;  //подумал хз зачем
 			$scope.isLoggedIn = AuthSvc.isLoggedIn;
 		}
 	]);

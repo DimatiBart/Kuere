@@ -12,7 +12,7 @@
 			<ul>
 				<li ng-show="isLoggedIn()">Ты зашёл</li>
 				<li ng-show="!isLoggedIn()">Ты не зашёл</li>
-				<li ng-show="isLoggedIn()" ng-click="logout()">Выйти</li>
+				<li ng-show="isLoggedIn()"><a href="#/logout">Выйти</a></li>
 			</ul>
 		</nav>
 	</header>
