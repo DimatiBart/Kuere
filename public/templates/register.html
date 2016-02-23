@@ -1,0 +1,23 @@
+<div class="">
+    <h4>Регистрируйся! От души!</h4>
+    <form ng-submit="register()" class="">
+        <div ng-show="error" class="">
+            <span> {{error.message}}</span>
+        </div>
+        <div class="">
+            <input type="email" class="" placeholder="Email" ng-model="user.email" required>
+        </div>
+        <div class="">
+            <input type="text" class="" placeholder="Username" ng-model="user.username" required>
+        </div>
+        <div class="" >
+            <input type="password" class="" placeholder="Password" ng-model="user.password" required>
+        </div>
+        <div class="" >
+            <input type="password" class="" placeholder="Repeat Your Password" ng-model="user.repPassword" required>
+        </div>
+        <button type="submit" class="">Зарегистрироваться</button>
+    </form>
+    <p><i>или</i></p>
+    <a href="/#/index" class="">Войти</a>
+</div>
