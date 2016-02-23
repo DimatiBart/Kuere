@@ -1,7 +1,8 @@
 # Kuere
 
-[![Join the chat at https://gitter.im/DimatiBart/Kuere](https://badges.gitter.im/DimatiBart/Kuere.svg)](https://gitter.im/DimatiBart/Kuere?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
+[![Join the chat at https://gitter.im/DimatiBart/Kuere](https://badges.gitter.im/DimatiBart/Kuere.svg)](https://gitter.im/DimatiBart/Kuere?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) 
+ &nbsp;
+[![Heroku](http://heroku-badge.herokuapp.com/?app=heroku-badge&svg=1&root=projects.html)](https://kuere.herokuapp.com)
 ## Description
 #### Find your lost things the easiest way. Or help someone to find'em. Just simple.
 
