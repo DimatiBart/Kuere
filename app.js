@@ -17,14 +17,17 @@ var auth 				 = require('./app/routes/auth');
 
 var mongoose 		 = require('mongoose');
 
+
 /*
  * Passport init
+ * Strategies init
  */
 
 var passport 		 = require('passport');
-
-var LocalStrategy = require('passport-local').Strategy;
-require('./app/config/passport.config.js');
+									 require('./app/config/strategies/facebook.js');
+									 require('./app/config/strategies/google.js');
+									 require('./app/config/strategies/local.js');
+									 require('./app/config/strategies/vk.js');
 
 var app = express();
 
