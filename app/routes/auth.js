@@ -3,6 +3,56 @@ var User 		 = require('../models/User');
 var passport = require('passport');
 var router 	 = express.Router();
 
+
+router.get('/facebook', passport.authenticate('facebook'));
+
+router.get(
+	'/facebook/callback',
+	passport.authenticate (
+		'facebook',
+		{ failureRedirect: '/login' }
+	),
+	function (req, res) {
+		console.log('successfully authorized with facebook');
+
+		// FIXME
+		res.status(200).json({ id: req.user._id });
+	}
+);
+
+router.get('/google', passport.authenticate('google'));
+
+router.get(
+	'/google/callback',
+	passport.authenticate (
+		'google',
+		{ failureRedirect: '/login' }
+	),
+	function (req, res) {
+		console.log('successfully authorized with google');
+
+		// FIXME
+		res.status(200).json({ id: req.user._id });
+	}
+);
+
+
+router.get('/vk', passport.authenticate('vkontakte'));
+
+router.get(
+	'/vk/callback',
+	passport.authenticate (
+		'vkontakte',
+		{ failureRedirect: '/login' }
+	),
+	function (req, res) {
+		console.log('successfully authorized with vk');
+
+		// FIXME
+		res.status(200).json({ id: req.user._id });
+	}
+);
+
 router.post('/register', function (req, res) {
 	if (!req.body.email || !req.body.password || !req.body.username) {
 		return res.status(400).json({ message: 'Please fill out all fields' });
