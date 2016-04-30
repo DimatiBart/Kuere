@@ -4,13 +4,16 @@
 
 require('angular');
 require('angular-ui-router');
+require('ui-leaflet');
+require('angular-simple-logger');
+require ('leaflet');
 
 /*
  * Expose
  */
 
 // Initializing app
-angular.module('app', ['ui.router', require('angular-cookies')]);
+angular.module('app', ['ui.router', require('angular-cookies'), 'ui-leaflet']);
 
 // Configs
 require('./routes/config.js');

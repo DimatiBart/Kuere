@@ -24,7 +24,7 @@ angular.module('app')
 				.then (function (){
 					$state.go('home');
 				})
-			}
+			};
 			$scope.logIn = function () {
 				if ($rootScope.success) {
 					delete $rootScope.success;
@@ -45,4 +45,4 @@ angular.module('app')
 				})
 			}
 		}
-	])
+	]);
