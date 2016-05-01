@@ -7,6 +7,7 @@ require('angular-ui-router');
 require('ui-leaflet');
 require('angular-simple-logger');
 require ('leaflet');
+require('angular-ui-bootstrap');
 
 /*
  * Expose
@@ -28,3 +29,4 @@ require('./controllers/MapCtrl.js');
 
 // Services
 require('./services/AuthSvc.js');
+require('./services/GeoSvc.js');
