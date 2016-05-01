@@ -24,6 +24,7 @@ require('./routes/config.js');
 // Controllers
 require('./controllers/AuthCtrl.js');
 require('./controllers/NavCtrl.js');
+require('./controllers/MapCtrl.js');
 
 // Services
 require('./services/AuthSvc.js');
