@@ -26,6 +26,7 @@ angular.module('app')
 			});
 		};
 		$scope.searchAddress = function() {
+			//GeoSvc.getGeoData($scope.address, 'Минск') google geocoding vs Nominatim
 			GeoSvc.getGeoData($scope.address, '53.79619,27.39029|54.008172,27.734298')
 				.success(function(data){
 					console.log(data);
