@@ -3,11 +3,11 @@ var router  = express.Router();
 var passport = require('passport');
 var shortid = require('shortid');
 
-var Post = require('../models/post');
-var Coordinate = require('../models/coordinate');
-var User = require('../models/user');
-var Img = require('../models/img');
-var Tag = require('../models/tag');
+var Post = require('../models/Post');
+var Coordinate = require('../models/Coordinate');
+var User = require('../models/User');
+var Img = require('../models/Img');
+var Tag = require('../models/Tag');
 
 router.post('/create', function createPost(req, res, next) {
   // TODO: redirect if unauthorized access detected
@@ -86,3 +86,5 @@ router.get('/:postId', function getPostById(req, res, next) {
         });
     });
 });
+
+module.exports = router;
