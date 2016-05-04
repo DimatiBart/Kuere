@@ -1,13 +1,16 @@
-var mongoose 							= require('mongoose');
-var findOrCreate 					= require('mongoose-findorcreate');
+var mongoose              = require('mongoose');
+var findOrCreate          = require('mongoose-findorcreate');
 var passportLocalMongoose = require('passport-local-mongoose');
 
-var Schema 								= mongoose.Schema;
+var Schema                = mongoose.Schema;
 
 var User = new Schema({
-	email: String,
-	username: String,
-	password: String
+  id: String,
+  email: String,
+  username: String,
+  password: String,
+  phone: String,
+  image_id: String, // (FK)
 });
 
 User.plugin(passportLocalMongoose, { usernameField: 'email' });
