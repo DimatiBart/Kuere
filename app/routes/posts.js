@@ -2,6 +2,7 @@ var express = require('express');
 var router  = express.Router();
 var passport = require('passport');
 var shortid = require('shortid');
+var mixer = require('../helpers/mixer');
 
 var Post = require('../models/Post');
 var Coordinate = require('../models/Coordinate');
@@ -10,9 +11,13 @@ var Img = require('../models/Img');
 var Tag = require('../models/Tag');
 
 router.post('/create', function createPost(req, res, next) {
-  // TODO: redirect if unauthorized access detected
-  var user = {}; // TODO: pass here current user object;
-  var postToCreate = {}; // TODO: pass here sent data object;
+  if (!req.isAuthenticated()) {
+    res.redirect('/auth');
+    return;
+  }
+
+  var user = req.body.user; // TODO: pass here current user object;
+  var postToCreate = req.body.post; // TODO: pass here sent data object;
 
   var coordinate = new Coordinate();
   coordinate.id = shortid.generate();
@@ -44,46 +49,95 @@ router.post('/create', function createPost(req, res, next) {
   res.status(200).send();
 });
 
+router.post('/edit', function editPostById(req, res, next) {
+  if (!req.isAuthenticated()) {
+    res.redirect('/auth');
+    return;
+  }
+
+  var user = req.body.user;
+  var postToEdit = req.body.post;
+
+  Post
+  .where({ id: postToEdit.id })
+  .findOne()
+  .then(function (post) {
+    var deferred = {
+      promises: [
+        Coordinate.where({ id: post.coordinate_id }),
+        Img.where({ id: post.img_id }),
+      ],
+      currentlyResolved: 0,
+      resolve: function () {
+        if (++currentlyResolved === promises.length - 1) {
+          // resolved!
+          res.status(200).send();
+        }
+      },
+    };
+
+    deferred.promises.forEach(function (promise, index) {
+      promise
+        .findOne()
+        .then(function (data) {
+          if (index === 0) {
+            data.latitude = postToEdit.latutude;
+            data.longtitude = postToEdit.longtitude;
+          } else if (index === 1) {
+            data.src = postToEdit.src;
+          }
+
+          data.save();
+          deferred.resolve();
+        });
+    })
+  });
+});
+
 router.get('/:postId', function getPostById(req, res, next) {
-  // TODO: redirect if unauthorized access detected
+  if (!req.isAuthenticated()) {
+    res.redirect('/auth');
+    return;
+  }
 
   Post
     .where({ id: req.params.id })
     .findOne()
     .then(function (post) {
-
-      // TODO: refactor callback hell with promises
-      Coordinate
-        .where({ id: post.coordinate_id })
-        .findOne()
-        .then(function (coordinate) {
-          post.coordinate = coordinate;
-
-          User
-            .where({ id: post.user_id })
-            .findOne()
-            .then(function (user) {
-              post.user = user;
-
-              Img
-                .where({ id: post.img_id })
-                .findOne()
-                .then(function (img) {
-                  post.img = img;
-
-                  Tag
-                    .where({ id: post.tag_id })
-                    .findOne()
-                    .then(function (tag) {
-                      post.tag = tag;
-
-                      res.render('post', {
-                        post: post,
-                      });
-                    });
-                });
+      var deferred = {
+        promises: [
+          Coordinate.where({ id: post.coordinate_id }),
+          User.where({ id: post.user_id }),
+          Img.where({ id: post.img_id }),
+        ],
+        currentlyResolved: 0,
+        resolve: function () {
+          if (++currentlyResolved === promises.length - 1) {
+            res.render('post', {
+              post: post,
             });
+          }
+        },
+      };
+
+      promises.collection.forEach(function (promise) {
+        promise.findOne().then(function (data) {
+          mixer.mix(post, data);
+          promises.resolve();
         });
+      });
+    });
+});
+
+router.delete('/:postId', function deletePostById(req, res, next) {
+  Post
+    .where({ id: req.params.postId })
+    .findOneAndRemove()
+    .then(function resolved(deletedPost) {
+      res.status(200).send();
+    })
+    .catch(function rejected(error) {
+      res.status(404).send();
     });
 });
 

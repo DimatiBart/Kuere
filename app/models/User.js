@@ -1,8 +1,9 @@
-var mongoose              = require('mongoose');
-var findOrCreate          = require('mongoose-findorcreate');
+var passport = require('passport');
+var mongoose = require('mongoose');
+var findOrCreate = require('mongoose-findorcreate');
 var passportLocalMongoose = require('passport-local-mongoose');
 
-var Schema                = mongoose.Schema;
+var Schema = mongoose.Schema;
 
 var User = new Schema({
   id: String,
@@ -11,6 +12,14 @@ var User = new Schema({
   password: String,
   phone: String,
   image_id: String, // (FK)
+});
+
+passport.serializeUser(function (user, done) {
+  done(null, user);
+});
+
+passport.deserializeUser(function (obj, done) {
+  done(null, obj);
 });
 
 User.plugin(passportLocalMongoose, { usernameField: 'email' });
