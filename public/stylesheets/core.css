@@ -1,0 +1,12 @@
+body {
+  padding: 50px;
+  font: 14px 'FontAwesome', 'Glyphicons', Arial, sans-serif;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.center {
+  text-align: center;
+}

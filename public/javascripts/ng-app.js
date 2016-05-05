@@ -4,19 +4,30 @@
 
 require('angular');
 require('angular-ui-router');
+require('ng-autocomplete');
+require('bootstrap/dist/css/bootstrap.css');
+
+require('../stylesheets/core.css');
+require('../stylesheets/fonts.css');
+require('../stylesheets/header.css');
+require('../stylesheets/home.css');
 
 /*
  * Expose
  */
 
 // Initializing app
-angular.module('app', ['ui.router', require('angular-cookies')]);
+angular.module('app', [
+  'ui.router',
+  'ngAutocomplete',
+  require('angular-cookies'),
+]);
 
 // Configs
 require('./routes/config.js');
 
-// Directives
-
+// Components
+require('./components/searchbox/searchbox.js');
 
 // Controllers
 require('./controllers/AuthCtrl.js');

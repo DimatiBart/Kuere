@@ -1,0 +1,40 @@
+body {
+  background: url('../images/cover16.jpg');
+}
+
+.background-filter {
+  background-color: rgba(134, 134, 134, 0.39);
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.main-heading {
+  margin-top: 30vh;
+}
+
+.main-heading__brand,
+.main-heading__description {
+  color: #fff;
+  font-family: 'Et-Line';
+  font-size: 72px;
+}
+
+.main-heading__description {
+  font-size: 24px;
+}
+
+.main-starter {
+  position: absolute !important;
+  bottom: 30px;
+}
+
+.main-starter .link-block {
+  background-color: rgba(181, 115, 0, 0.27);
+}
+
+.main-starter .link-block:hover {
+  background-color: rgba(210, 136, 5, 0.27);
+}

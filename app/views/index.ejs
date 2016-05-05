@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html ng-app="app">
 <head>
+  <title>Kuere</title>
+  <meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
+  <script type="text/javascript" src="dist/bundle.js"></script>
+</head>
+<body>
+  <div class="background-filter">
+    <ui-view></ui-view>
+  </div>
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html ng-app="app">
+<head>
 	<title>Kuere</title>
 	<meta name="viewport" content="width = device-width, initial-scale = 1.0, maximum-scale = 1.0, user-scalable = no">
 	<link rel='stylesheet' href='/stylesheets/style.css' />
@@ -20,4 +36,4 @@
 	<p>Welcome to HUKuere</p>
 	<ui-view></ui-view>
 </body>
-</html>
+</html> -->
