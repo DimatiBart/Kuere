@@ -26,6 +26,7 @@
     "passport-local-mongoose": "^4.0.0",
     "passport-vkontakte": "^0.4.0",
     "serve-favicon": "~2.3.0",
+    "shortid": "^2.2.6",
     "webpack": "^1.12.13"
   },
   "devDependencies": {

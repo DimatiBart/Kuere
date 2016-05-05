@@ -3,6 +3,9 @@ var User 		 = require('../models/User');
 var passport = require('passport');
 var router 	 = express.Router();
 
+router.get('/', function (req, res, next) {
+  res.redirect('/');
+});
 
 router.get('/facebook', passport.authenticate('facebook'));
 
