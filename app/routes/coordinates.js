@@ -18,6 +18,8 @@ router.get('/:id', function (req, res, next) {
     ? Coordinate.where({ id: req.params.id }).findOne()
     : Coordinate.where({}).find();
 
+	//TODO check if all entities are in plain object
+
   query.then(function resolved(fetchResult) {
     res.status(200).send(fetchResult);
   }).catch(function rejected(error) {

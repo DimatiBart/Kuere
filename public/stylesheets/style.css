@@ -6,3 +6,7 @@ body {
 a {
   color: #00B7FF;
 }
+
+.angular-leaflet-map {
+	float: left;
+}

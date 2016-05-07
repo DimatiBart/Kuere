@@ -19,10 +19,11 @@ angular.module('app')
 		$scope.addMarker = function(){
 			leafletData.getMap().then(function(map) {
 				let center = map.getCenter();
-				L.marker([center.lat, center.lng], {
-					draggable: true,
-					title: 'HB!'
-				}).addTo(map);
+				angular.extend($scope._markers, {
+					lat: center.lat,
+					lng: center.lng,
+					draggable: true
+				});
 			});
 		};
 		$scope.searchAddress = function() {
@@ -34,5 +35,8 @@ angular.module('app')
 				.error(function(error){
 					$scope.error = error;
 				})
+		};
+		$scope.submitNewPost = function(){
+
 		}
 	}]);
