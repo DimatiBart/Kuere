@@ -1,0 +1,16 @@
+<a href="/#/home" class="">назад на карту</a>
+<div ng-controller="ChartCtrl">
+	<p>Количество найденный вещей по годам</p>
+	<canvas id="pie" class="chart chart-pie"
+					chart-data='pieData' chart-labels="pieLabels">
+	</canvas>
+	<p>Соотношение найденых и потеряный вещей:</p>
+	<canvas id="pie2" class="chart chart-pie"
+					chart-data='lostData' chart-labels="lostLabels">
+	</canvas>
+	<p>lol</p>
+	<canvas id="bar" class="chart chart-bar"
+					chart-data="barData" chart-labels="barLabels"> chart-series="barSeries"
+	</canvas>
+</div>
+
