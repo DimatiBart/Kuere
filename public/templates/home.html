@@ -6,6 +6,24 @@
 	<button ng-click="addMarker()">Add marker, nigger</button>
 	<input type="text" ng-model="address">
 	<button type="button" ng-click="searchAddress()">Search for address</button>
+	<button type="button" ng-click="getPlace()">Search for address</button>
+
 </div>
 
+
+
+<div ng-controller="PieCtrl">
+	<p>Количество найденный вещей по годам</p>
+	<canvas id="pie" class="chart chart-pie"
+					chart-data='pieData' chart-labels="pieLabels">
+	</canvas>
+	<p>Соотношение найденых и потеряный вещей:</p>
+	<canvas id="pie2" class="chart chart-pie"
+					chart-data='lostData' chart-labels="lostLabels">
+	</canvas>
+	<p>lol</p>
+	<canvas id="bar" class="chart chart-bar"
+					chart-data="barData" chart-labels="barLabels"> chart-series="barSeries"
+	</canvas>
+</div>
 

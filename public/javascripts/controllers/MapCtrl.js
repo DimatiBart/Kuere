@@ -34,5 +34,11 @@ angular.module('app')
 				.error(function(error){
 					$scope.error = error;
 				})
-		}
-	}]);
+		};
+		$scope.getPlace = function(){
+		GeoSvc.getPlaceData(40.714232,-73.9612889).success(function(data){
+			console.log(data);
+		}).error(function(error){
+			$scope.error = error;
+		})
+	}}]);
