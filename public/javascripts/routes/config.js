@@ -20,6 +20,10 @@ angular.module('app')
         url: '/search',
         templateUrl: 'templates/search.html',
       })
+      .state('about', {
+        url: '/about',
+        templateUrl: 'templates/about.html'
+      })
 
 
 
