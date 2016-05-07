@@ -38,13 +38,16 @@ angular.module('app')
 		};
 		$scope.getPlace = function() {
 			//GeoSvc.getGeoData($scope.address, 'Минск') google geocoding vs Nominatim
-			GeoSvc.getPlaceData(53.79619,27.39029)
-				.success(function(data){
-					console.log(data);
-				})
-				.error(function(error){
-					$scope.error = error;
-				})
+			leafletData.getMap().then(function(map) {
+				let center = map.getCenter();
+				GeoSvc.getPlaceData(center.lat,center.lng)
+					.success(function(data){
+						console.log(data.results[0].address_components[2].long_name);
+					})
+					.error(function(error){
+						$scope.error = error;
+					})
+			});
 		};
 		$scope.submitNewPost = function(){
 
