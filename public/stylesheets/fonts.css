@@ -1,34 +1,34 @@
 @font-face {
   font-family: 'FontAwesome';
-  src: url('../fonts/fontawesome-webfont.eot?') format('eot'),
+  src: url('../fonts/fontawesome-webfont.eot') format('eot'),
        url('../fonts/fontawesome-webfont.woff') format('woff'),
        url('../fonts/fontawesome-webfont.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Et-Line';
-  src: url('../fonts/et-line.eot?') format('eot'),
+  src: url('../fonts/et-line.eot') format('eot'),
        url('../fonts/et-line.woff') format('woff'),
        url('../fonts/et-line.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Glyphicons';
-  src: url('../fonts/glyphicons-halflings-regular.eot?') format('eot'),
+  src: url('../fonts/glyphicons-halflings-regular.eot') format('eot'),
        url('../fonts/glyphicons-halflings-regular.woff') format('woff'),
        url('../fonts/glyphicons-halflings-regular.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'PE-icon';
-  src: url('../fonts/Pe-icon-7-stroke.eot?') format('eot'),
+  src: url('../fonts/Pe-icon-7-stroke.eot') format('eot'),
        url('../fonts/Pe-icon-7-stroke.woff') format('woff'),
        url('../fonts/Pe-icon-7-stroke.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Themify';
-  src: url('../fonts/themify.eot?') format('eot'),
+  src: url('../fonts/themify.eot') format('eot'),
        url('../fonts/themify.woff') format('woff'),
        url('../fonts/themify.ttf') format('truetype');
 }
