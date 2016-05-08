@@ -11,6 +11,9 @@
 	<header>
 		<nav ng-controller="NavCtrl">
 			<ul>
+				<li ng-show="isLoggedIn()"><a href="#/home">Карта</a></li>
+				<li ng-show="isLoggedIn()"><a href="#/create_post">Добавить пост</a></li>
+				<li ng-show="isLoggedIn()"><a href="#/charts">Графики</a></li>
 				<li ng-show="isLoggedIn()">Ты зашёл</li>
 				<li ng-show="!isLoggedIn()">Ты не зашёл</li>
 				<li ng-show="isLoggedIn()"><a href="#/logout">Выйти</a></li>

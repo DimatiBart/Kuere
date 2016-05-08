@@ -19,10 +19,11 @@ angular.module('app')
 		$scope.addMarker = function(){
 			leafletData.getMap().then(function(map) {
 				let center = map.getCenter();
-				L.marker([center.lat, center.lng], {
+				angular.extend($scope._markers, {
+					lat: center.lat,
+					lng: center.lng,
 					draggable: true,
-					title: 'HB!'
-				}).addTo(map);
+				});
 			});
 		};
 		$scope.searchAddress = function() {
@@ -35,10 +36,23 @@ angular.module('app')
 					$scope.error = error;
 				})
 		};
-		$scope.getPlace = function(){
-		GeoSvc.getPlaceData(40.714232,-73.9612889).success(function(data){
-			console.log(data);
-		}).error(function(error){
-			$scope.error = error;
-		})
-	}}]);
+		$scope.getPlace = function() {
+			//GeoSvc.getGeoData($scope.address, 'Минск') google geocoding vs Nominatim
+			leafletData.getMap().then(function(map) {
+				let center = map.getCenter();
+				GeoSvc.getPlaceData(center.lat,center.lng)
+					.success(function(data){
+						console.log(data.results[0].address_components[2].long_name);
+					})
+					.error(function(error){
+						$scope.error = error;
+					})
+			});
+		};
+		$scope.showmarkers = function() {
+			console.log($scope._markers);
+		};
+		$scope.submitNewPost = function(){
+
+		}
+	}]);
