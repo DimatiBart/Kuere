@@ -39,7 +39,7 @@ router.post('/create', function (req, res, next) {
 	}).then(function(){
 		var img = new Img();
 		img.id = shortid.generate();
-		img.src = postToCreate.linkToImage;
+		img.src = postToCreate.img;
 		img.save();
 
 		var post = new Post();
@@ -59,6 +59,50 @@ router.post('/create', function (req, res, next) {
 		res.status(200).send();
 	});
 
+});
+
+router.get('/get_all', function(req, res, next){
+	if (!req.isAuthenticated()) {
+		res.redirect('/auth');
+		return;
+	}
+	let postArray = [], size;
+	Post.find({}, function(err , posts){
+		size = posts.length;
+		if (err) {
+			res.status(404).send();
+			return;
+		}
+		posts.forEach(function(post){
+			let tempObj = {};
+			tempObj.id = post.id;
+			tempObj.title = post.title;
+			tempObj.description = post.description;
+			tempObj.type = post.type;
+			tempObj.date = post.date;
+			tempObj.user_id = post.user_id;
+
+			Coordinate.findOne({id: post.coordinate_id}, function(err, data){
+				tempObj.coordinates = {
+					lat: data.latitude,
+					lng: data.longtitude
+				}
+			}).then(function(){
+				Img.findOne({id: post.img_id}, function(err, img){
+					if (err) {
+						res.status(404).send();
+						return;
+					}
+					tempObj.img = img.src;
+				}).then( () => {
+					postArray.push(tempObj);
+					if (postArray.length === size) {
+						res.status(200).json({postArray : postArray});
+					}
+				});
+			})
+		});
+	})
 });
 
 router.post('/edit', function (req, res, next) {
@@ -146,47 +190,6 @@ router.get('/close/:postId', function (req, res, next) {
 				res.status(200).send();
 			}
 		})
-});
-
-router.get('/get_all', function(req, res, next){
-	if (!req.isAuthenticated()) {
-		res.redirect('/auth');
-		return;
-	}
-	Post.find({}, function(err , posts){
-		if (err) {
-			res.status(404).send();
-			return;
-		}
-		let postArray = [];
-		posts.forEach(function(post){
-			let tempObj = {};
-			tempObj.id = post.id;
-			tempObj.title = post.title;
-			tempObj.description = post.description;
-			tempObj.type = post.type;
-			tempObj.date = post.date;
-			tempObj.user_id = post.user_id;
-
-			Coordinate.findOne({id: post.coordinate_id}, function(err, data){
-				tempObj.coordinates = {
-					lat: data.latitude,
-					lng: data.longtitude
-				}
-			}).then(function(){
-				Img.findOne({id: post.img_id}, function(err, img){
-					if (err) {
-						res.status(404).send();
-						return;
-					}
-					tempObj.img = img.src;
-				})
-			}).then ( () => postArray.push(tempObj) ); //arrow functions yey
-		}).then( () => {
-			console.log('hb');
-			res.status(200).send(postArray);
-		})
-	})
 });
 
 module.exports = router;

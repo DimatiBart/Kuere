@@ -56,6 +56,7 @@ angular.module('app')
 		$scope.getAllPosts = function () {
 			PostsSvc.getAll()
 				.success( (data) => {
+					console.dir(data);
 					$scope.posts = data.postArray;
 					console.dir($scope.posts);
 				})
