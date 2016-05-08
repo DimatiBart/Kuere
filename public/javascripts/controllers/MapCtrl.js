@@ -19,12 +19,13 @@ angular.module('app')
 		$scope.addMarker = function(){
 			leafletData.getMap().then(function(map) {
 				let center = map.getCenter();
-				angular.extend($scope._markers, {
+				$scope._markers.m1 = {
 					lat: center.lat,
 					lng: center.lng,
-					draggable: true,
-				});
-			});
+					message: "Был здесь!",
+					draggable: true
+				};
+			})
 		};
 		$scope.searchAddress = function() {
 			//GeoSvc.getGeoData($scope.address, 'Минск') google geocoding vs Nominatim
@@ -35,6 +36,10 @@ angular.module('app')
 				.error(function(error){
 					$scope.error = error;
 				})
+		};
+
+		$scope.submitNewPost = function(){
+
 		};
 		$scope.getPlace = function() {
 			//GeoSvc.getGeoData($scope.address, 'Минск') google geocoding vs Nominatim
