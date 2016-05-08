@@ -56,7 +56,7 @@ angular.module('app')
 				})
 				.state('create_post', {
 					url: '/create_post',
-					templateUrl: 'templates/create_post.html',
+					templateUrl: 'templates/post.html',
 					onEnter: ['$state', 'AuthSvc', function($state, AuthSvc) {
 
 						if (!AuthSvc.isLoggedIn()) {
