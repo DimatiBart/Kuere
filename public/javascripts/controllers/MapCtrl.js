@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('MapCtrl', ['$scope', '$rootScope', '$state', 'leafletData', 'GeoSvc', function($scope, $rootScope, $state, leafletData, GeoSvc){
+	.controller('MapCtrl', ['$scope', '$rootScope', '$state', 'leafletData', 'GeoSvc', 'PostsSvc', function($scope, $rootScope, $state, leafletData, GeoSvc, PostsSvc){
 		L.Icon.Default.imagePath = './stylesheets/images/';
 		angular.extend($scope, {
 			center: {
@@ -11,6 +11,7 @@ angular.module('app')
 		});
 		$scope.address = "";
 		$scope._markers = {};
+		$scope.posts = [];
 		$scope.getData = function(){
 			leafletData.getMap().then(function(map) {
 				console.dir(map);
@@ -51,5 +52,15 @@ angular.module('app')
 		};
 		$scope.submitNewPost = function(){
 
-		}
+		};
+		$scope.getAllData = function () {
+			PostsSvc.getAll()
+				.success( (data) => {
+					$scope.posts = data.postArray;
+					console.dir($scope.posts);
+				})
+				.error ( (err) => {
+					console.log(err);
+				})
+		};
 	}]);

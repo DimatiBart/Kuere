@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var router  = express.Router();
 var passport = require('passport');
@@ -8,7 +9,7 @@ var Post = require('../models/Post');
 var Coordinate = require('../models/Coordinate');
 var User = require('../models/User');
 var Img = require('../models/Img');
-var Tag = require('../models/Tag');
+//var Tag = require('../models/Tag'); Nahooi
 
 router.post('/create', function (req, res, next) {
   if (!req.isAuthenticated()) {
@@ -145,6 +146,47 @@ router.get('/close/:postId', function (req, res, next) {
 				res.status(200).send();
 			}
 		})
+});
+
+router.get('/get_all', function(req, res, next){
+	if (!req.isAuthenticated()) {
+		res.redirect('/auth');
+		return;
+	}
+	Post.find({}, function(err , posts){
+		if (err) {
+			res.status(404).send();
+			return;
+		}
+		let postArray = [];
+		posts.forEach(function(post){
+			let tempObj = {};
+			tempObj.id = post.id;
+			tempObj.title = post.title;
+			tempObj.description = post.description;
+			tempObj.type = post.type;
+			tempObj.date = post.date;
+			tempObj.user_id = post.user_id;
+
+			Coordinate.findOne({id: post.coordinate_id}, function(err, data){
+				tempObj.coordinates = {
+					lat: data.latitude,
+					lng: data.longtitude
+				}
+			}).then(function(){
+				Img.findOne({id: post.img_id}, function(err, img){
+					if (err) {
+						res.status(404).send();
+						return;
+					}
+					tempObj.img = img.src;
+				})
+			}).then ( () => postArray.push(tempObj) ); //arrow functions yey
+		}).then( () => {
+			console.log('hb');
+			res.status(200).send(postArray);
+		})
+	})
 });
 
 module.exports = router;
