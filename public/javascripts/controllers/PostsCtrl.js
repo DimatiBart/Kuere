@@ -1,6 +1,6 @@
 angular.module('app')
-	.controller('PostsCtrl', ['$scope', '$rootScope', '$state', 'leafletData', 'GeoSvc', 'PostsSvc',
-		function($scope, $rootScope, $state, leafletData, GeoSvc, PostsSvc){
+	.controller('PostsCtrl', ['$scope', '$rootScope', '$state', 'leafletData', 'GeoSvc', 'PostsSvc', '$cookies',
+		function($scope, $rootScope, $state, leafletData, GeoSvc, PostsSvc, $cookies){
 				L.Icon.Default.imagePath = './stylesheets/images/';
 				angular.extend($scope, {
 					center: {
@@ -46,7 +46,7 @@ angular.module('app')
 				$scope.submitNewPost = function(){
 					$scope.post.lat = $scope._markers.m1.lat;
 					$scope.post.lng = $scope._markers.m1.lng;
-					PostsSvc.createPost({user:{}, post: $scope.post}) //TODO route to main map page and show some shitty message(s)
+					PostsSvc.createPost({user:{id: $cookies.get('id')}, post: $scope.post}) //TODO route to main map page and show some shitty message(s)
 					.success(function(data){
 						alert('Успех!');
 					})
