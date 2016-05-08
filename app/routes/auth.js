@@ -60,7 +60,7 @@ router.post('/register', function (req, res) {
 	if (!req.body.email || !req.body.password || !req.body.username) {
 		return res.status(400).json({ message: 'Please fill out all fields' });
 	}
-	User.register(new User({ email : req.body.email, username: req.body.username }), req.body.password, function (err, account) {
+	User.register(new User({ email : req.body.email, username: req.body.username, phone: req.body.phone }), req.body.password, function (err, account) {
 		if (err) {
 			return res.status(500).json({ err: err });
 		}

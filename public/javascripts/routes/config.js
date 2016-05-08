@@ -33,6 +33,15 @@ angular.module('app')
 						}
 					}],
 				})
+				.state ('charts',{
+					url:'/charts',
+					templateUrl: 'templates/charts.html',
+					onEnter: [ '$state', 'AuthSvc', function($state, AuthSvc) {
+						if (!AuthSvc.isLoggedIn()) {
+							$state.go('index');
+						}
+					}],
+				})
 				.state ('logout',{
 					url:'/logout',
 					onEnter: ['$state', 'AuthSvc', function($state, AuthSvc) {
@@ -41,6 +50,16 @@ angular.module('app')
 						}
 						else {
 							AuthSvc.logout();
+							$state.go('index');
+						}
+					}]
+				})
+				.state('create_post', {
+					url: '/create_post',
+					templateUrl: 'templates/post.html',
+					onEnter: ['$state', 'AuthSvc', function($state, AuthSvc) {
+
+						if (!AuthSvc.isLoggedIn()) {
 							$state.go('index');
 						}
 					}]

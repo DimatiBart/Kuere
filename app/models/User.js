@@ -10,8 +10,7 @@ var User = new Schema({
   email: String,
   username: String,
   password: String,
-  phone: String,
-  image_id: String, // (FK)
+  phone: String
 });
 
 passport.serializeUser(function (user, done) {

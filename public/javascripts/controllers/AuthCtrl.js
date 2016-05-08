@@ -8,7 +8,7 @@ angular.module('app')
 			$scope.user = {};
 			$scope.register = function () {
 				if ($scope.user.password !== $scope.user.repPassword) {
-					$scope.error = {message: 'Passwords Must Match '};
+					$scope.error = {message: 'Пароли должны совпадать '};
 					return;
 				}
 				AuthSvc.register($scope.user)
@@ -16,7 +16,7 @@ angular.module('app')
 					if ($scope.error) {
 						delete $scope.error;
 					}
-					$rootScope.success = "Registration successful";
+					$rootScope.success = "Регистрация прошла успешно";
 				})
 				.error(function(error){
 					$scope.error = error;
@@ -24,7 +24,7 @@ angular.module('app')
 				.then (function (){
 					$state.go('home');
 				})
-			}
+			};
 			$scope.logIn = function () {
 				if ($rootScope.success) {
 					delete $rootScope.success;
@@ -45,4 +45,4 @@ angular.module('app')
 				})
 			}
 		}
-	])
+	]);

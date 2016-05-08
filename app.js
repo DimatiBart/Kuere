@@ -46,8 +46,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: 'supersecretninjatoken',
   resave: true,
-  saveUninitialized: false,
-
+  saveUninitialized: false
   //cookie: { secure: true, maxAge: 60000*60000 }
 }));
 
@@ -61,7 +60,7 @@ app.use('/posts', posts);
 
 mongoose.connect('mongodb://admin:admin@ds011298.mongolab.com:11298/kuere', function (err) {
   if (err) {
-    console.error('Could not connect to mongodb on localhost.');
+    console.error('Could not connect to mongodb.');
   } else {
     console.log('Connected to the DB');
   }
@@ -83,7 +82,7 @@ if (app.get('env') === 'development') {
     res.status(err.status || 500);
     res.render('error', {
       message: err.message,
-      error: err,
+      error: err
     });
   });
 }
@@ -94,7 +93,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
-    error: {},
+    error: {}
   });
 });
 

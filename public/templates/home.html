@@ -1,1 +1,15 @@
-<h1>HUI BLAT</h1>
+<a href="/#/charts" class="">графики</a> <br>
+<a href="/#/create_post" class="">Добавить новый православный пост</a>
+<div ng-controller="MapCtrl">
+	<h4>Minsk borders are <b>[53.79619, 54.008172, 27.39029, 27.734298]</b></h4>
+
+	<leaflet lf-center="center" width="100%" height="480px" markers="markers"></leaflet>
+	<button ng-click="getData()">Show Map Data in console</button>
+	<button ng-click="addMarker()">Add marker, nigger</button>
+	<input type="text" ng-model="address">
+	<button type="button" ng-click="searchAddress()">Search for address</button>
+	<button type="button" ng-click="getPlace()">Search for address</button>
+	<button type="button" ng-click="getAllPosts()">Get All Posts</button>
+</div>
+
+
