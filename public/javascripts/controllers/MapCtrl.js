@@ -17,17 +17,6 @@ angular.module('app')
 				console.dir(map);
 			});
 		};
-		$scope.addMarker = function(){
-			leafletData.getMap().then(function(map) {
-				let center = map.getCenter();
-				$scope._markers.m1 = {
-					lat: center.lat,
-					lng: center.lng,
-					message: "Был здесь!",
-					draggable: true
-				};
-			})
-		};
 		$scope.searchAddress = function() {
 			//GeoSvc.getGeoData($scope.address, 'Минск') google geocoding vs Nominatim
 			GeoSvc.getGeoData($scope.address, '53.79619,27.39029|54.008172,27.734298')
@@ -50,18 +39,28 @@ angular.module('app')
 					})
 			});
 		};
-		$scope.submitNewPost = function(){
-
+		$scope.showMarkers = function(){
+			leafletData.getMap().then(function(map) {
+				for (var i in $scope.posts) {
+					L.marker([$scope.posts[i].coordinates.lat, $scope.posts[i].coordinates.lng], {
+						title: $scope.posts[i].title
+					}).addTo(map);
+				}
+			})
 		};
+		$scope.$on('leafletDirectiveMap.load', function(event){
+			$scope.showMarkers();
+		});
 		$scope.getAllPosts = function () {
 			PostsSvc.getAll()
 				.success( (data) => {
-					console.dir(data);
 					$scope.posts = data.postArray;
+					$scope.showMarkers();
 					console.dir($scope.posts);
 				})
 				.error ( (err) => {
 					console.log(err);
 				})
 		};
+		$scope.getAllPosts();
 	}]);
