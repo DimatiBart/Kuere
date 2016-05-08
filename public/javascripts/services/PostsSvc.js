@@ -15,6 +15,9 @@ angular.module('app')
 			},
 			closePost: function (id) {
 				return $http.get('posts/close/' + id);
+			},
+			getAll: function(){
+				return $http.get('posts/get_all');
 			}
 		}
 	}]);

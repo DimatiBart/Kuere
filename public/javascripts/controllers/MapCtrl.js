@@ -53,7 +53,7 @@ angular.module('app')
 		$scope.submitNewPost = function(){
 
 		};
-		$scope.getAllData = function () {
+		$scope.getAllPosts = function () {
 			PostsSvc.getAll()
 				.success( (data) => {
 					$scope.posts = data.postArray;
