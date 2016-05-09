@@ -34,18 +34,32 @@
     <div class="row">
       <div ng-controller="PostsCtrl">
         <leaflet lf-center="center" width="50%" height="330px" markers="_markers"></leaflet>
-        <form ng-submit="submitNewPost()">
-          <div><input type="radio" name="type" value="lost" ng-model="post.type"> Потерял</div>
-          <div><input type="radio" name="type" value="found" ng-model="post.type"> Нашёл</div>
-          Название <input type="text" ng-model="post.title" required>
-          Описание <textarea ng-model="post.description" rows=3 cols=30></textarea>
-          Ссылка на фото <input type="text" ng-model="post.img" required>
-          <button type="submit">Сохранить</button>
+        <form class="post-kk" ng-submit="submitNewPost()">
+          <div class="form-group">
+            Потерял
+            <input class="form-control" type="radio" name="type" value="lost" ng-model="post.type">
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="radio" name="type" value="found" ng-model="post.type">
+            Нашёл
+          </div>
+          <div class="form-group">
+            Название <input class="form-control" type="text" ng-model="post.title" required>
+          </div>
+          <div class="form-group">
+            Описание <textarea class="form-control" ng-model="post.description" rows=3 cols=30></textarea>
+          </div>
+          <div class="form-group">
+            Ссылка на фото <input class="form-control" type="text" ng-model="post.img" required>
+          </div>
+          <button class="btn btn-default" type="submit">Сохранить</button>
         </form>
-        <button ng-click="get()">О</button>
-        <button ng-click="addMarker()">Add marker, nigger</button>
-        <input type="text" ng-model="address">
-        <button type="button" ng-click="searchAddress()">Search for address</button>
+        <br><br>
+        <div class="buttonss">
+          <button class="btn btn-default" ng-click="addMarker()">Добавить маркер</button>
+          <input class="form-control home-address" type="text" ng-model="address">
+          <button class="btn btn-default" type="button" ng-click="searchAddress()">Поиск адреса</button>
+        </div>
       </div>
     </div>
   </div>

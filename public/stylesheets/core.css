@@ -1,5 +1,4 @@
 body {
-  padding: 50px;
   font: 14px 'FontAwesome', 'Glyphicons', Arial, sans-serif;
 }
 
@@ -9,4 +8,12 @@ body {
 
 .center {
   text-align: center;
+}
+
+.background {
+  position: absolute;
+  background-color: rgba(196, 196, 196, 0.29);
+  margin-top: -10px;
+  height: 100%;
+  width: 100%;
 }

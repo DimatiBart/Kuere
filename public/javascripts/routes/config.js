@@ -46,7 +46,7 @@ angular.module('app')
       })
       .state('create_post', {
         url: '/create_post',
-        templateUrl: 'templates/post.html',
+        templateUrl: 'templates/_post.html',
         onEnter: ['$state', 'AuthSvc', authorizedOnly],
       })
       .state('posts', {

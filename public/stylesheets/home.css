@@ -1,5 +1,7 @@
 body {
   background: url('../images/cover16.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .background-filter {
@@ -9,6 +11,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
+  height: 100%;
 }
 
 .main-heading {
@@ -37,4 +40,19 @@ body {
 
 .main-starter .link-block:hover {
   background-color: rgba(210, 136, 5, 0.27);
+}
+
+.home-address {
+  display: inline !important;
+  width: inherit !important;
+}
+
+.post-kk {
+  display: inline-block;
+  width: 300px;
+  margin-left: 35px;
+  color: #fff;
+}
+.buttonss {
+  margin-top: -50px;
 }
