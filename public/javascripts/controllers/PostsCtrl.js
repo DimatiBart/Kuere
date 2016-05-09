@@ -40,7 +40,7 @@ angular.module('app')
 								alert('Извините, мы не нашли такого места');
 								return;
 							}
-							var pos = data.results[0].geometry.bounds;
+							var pos = data.results[0].geometry.location;
 							leafletData.getMap().then(function(map) {
 								map.panTo(new L.LatLng(pos.lat, pos.lng)).setZoom(15);
 							})
