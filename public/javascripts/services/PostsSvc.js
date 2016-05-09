@@ -2,22 +2,22 @@ angular.module('app')
 	.factory('PostsSvc', ['$http', function ($http){
 		return {
 			createPost: function(data) {
-				return $http.post('/posts/create', data);
+				return $http.post('/pos/create', data);
 			},
 			editPost: function(data) { //data.postId + data.updatedPost
-				return $http.post('posts/edit', data)
+				return $http.post('pos/edit', data)
 			},
 			getPost: function(id) {
-				return $http.get('posts/' + id);
+				return $http.get('pos/' + id);
 			},
 			deletePost: function (id) {
-				return $http.delete('posts/delete' + id);
+				return $http.delete('pos/delete' + id);
 			},
 			closePost: function (id) {
-				return $http.get('posts/close/' + id);
+				return $http.get('pos/close/' + id);
 			},
 			getAll: function(){
-				return $http.get('posts/get_all');
+				return $http.get('pos/get_all');
 			}
 		}
 	}]);

@@ -56,7 +56,7 @@ app.use(passport.session());
 //routes
 app.use('/', routes);
 app.use('/auth', auth);
-app.use('/posts', posts);
+app.use('/pos', posts);
 
 mongoose.connect('mongodb://admin:admin@ds011298.mongolab.com:11298/kuere', function (err) {
   if (err) {
