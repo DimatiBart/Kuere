@@ -34,21 +34,34 @@ angular.module('app')
 					console.dir($scope._markers.m1);
 				};
 				$scope.searchAddress = function() {
-					//GeoSvc.getGeoData($scope.address, 'Минск') google geocoding vs Nominatim
 					GeoSvc.getGeoData($scope.address, '53.79619,27.39029|54.008172,27.734298')
 						.success(function(data){
-							console.log(data);
+							if (data.results.length == 0 ) {
+								alert('Извините, мы не нашли такого места');
+								return;
+							}
+							var pos = data.results[0].geometry.bounds;
+							leafletData.getMap().then(function(map) {
+								map.panTo(new L.LatLng(pos.lat, pos.lng)).setZoom(15);
+							})
 						})
 						.error(function(error){
 							$scope.error = error;
+							alert('Извините, мы не нашли такого места');
+							return;
 						})
 				};
 				$scope.submitNewPost = function(){
+					if (!$scope._markers.m1.lat || !$scope._markers.m1.lng) {
+						alert('Вы не поставили маркер');
+					}
 					$scope.post.lat = $scope._markers.m1.lat;
 					$scope.post.lng = $scope._markers.m1.lng;
 					PostsSvc.createPost({user:{id: $cookies.get('id')}, post: $scope.post}) //TODO route to main map page and show some shitty message(s)
 					.success(function(data){
 						alert('Успех!');
+						$state.go('home'); // TODO redirect to post
+						return;
 					})
 					.error(function(){
 						alert('ХБ!');
@@ -56,5 +69,5 @@ angular.module('app')
 					.then(function(){
 
 					})
-				}
+				};
 			}]);
