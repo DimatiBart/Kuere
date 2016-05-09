@@ -31,8 +31,22 @@
 </header>
 <main>
   <div class="container">
-    <div class="row" ng-controller="PostCtrl as ctrl">
-      <post-info post="ctrl.post"></post-info>
+    <div class="row">
+      <div ng-controller="PostsCtrl">
+        <leaflet lf-center="center" width="50%" height="330px" markers="_markers"></leaflet>
+        <form ng-submit="submitNewPost()">
+          <div><input type="radio" name="type" value="lost" ng-model="post.type"> Потерял</div>
+          <div><input type="radio" name="type" value="found" ng-model="post.type"> Нашёл</div>
+          Название <input type="text" ng-model="post.title" required>
+          Описание <textarea ng-model="post.description" rows=3 cols=30></textarea>
+          Ссылка на фото <input type="text" ng-model="post.img" required>
+          <button type="submit">Сохранить</button>
+        </form>
+        <button ng-click="get()">О</button>
+        <button ng-click="addMarker()">Add marker, nigger</button>
+        <input type="text" ng-model="address">
+        <button type="button" ng-click="searchAddress()">Search for address</button>
+      </div>
     </div>
   </div>
 </main>

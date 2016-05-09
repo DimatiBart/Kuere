@@ -7,9 +7,10 @@ angular.module('app')
       var vm = this;
 
       vm.post;
-
+      debugger;
       PostsSvc.getPost($stateParams.id)
         .then(function (post) {
+          debugger;
           vm.post = post;
         });
     },

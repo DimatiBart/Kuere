@@ -43,6 +43,7 @@ require('./components/registerForm/registerForm');
 require('./components/searchbox/searchbox');
 require('./components/postItem/postItem');
 require('./components/postList/postList');
+require('./components/postInfo/postInfo');
 
 // Controllers
 require('./controllers/AuthCtrl');
