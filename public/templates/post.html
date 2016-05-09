@@ -1,17 +1,38 @@
-<div ng-controller="PostsCtrl">
-	<leaflet lf-center="center" width="50%" height="330px" markers="_markers"></leaflet>
-	<form ng-submit="submitNewPost()">
-		<div><input type="radio" name="type" value="lost" ng-model="post.type"> Потерял</div>
-		<div><input type="radio" name="type" value="found" ng-model="post.type"> Нашёл</div>
-		Название <input type="text" ng-model="post.title" required>
-		Описание <textarea ng-model="post.description" rows=3 cols=30></textarea>
-		Ссылка на фото <input type="text" ng-model="post.img" required>
-		<button type="submit">Сохранить</button>
-	</form>
-	<button ng-click="get()">О</button>
-	<button ng-click="addMarker()">Add marker, nigger</button>
-	<input type="text" ng-model="address">
-	<button type="button" ng-click="searchAddress()">Search for address</button>
-</div>
-
-
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="сol-lg-offset-4 col-lg-2 col-md-offset-2 col-md-2 col-sm-offset-2 col-sm-2 col-xs-offset-1 col-xs-3">
+        <a class="link-block" ui-sref="create_post">
+          Создать пост
+        </a>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+        <a class="link-block" ui-sref="home">
+          Карта
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <a class="link-block" ui-sref="posts">
+          Все посты
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <a class="link-block" ui-sref="charts">
+          Графики
+        </a>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+        <a class="link-block" ui-sref="logout">
+          Выйти
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="container">
+    <div class="row" ng-controller="PostCtrl as ctrl">
+      <post-info post="ctrl.post"></post-info>
+    </div>
+  </div>
+</main>

@@ -29,19 +29,12 @@
     </div>
   </div>
 </header>
-<main>
-  <div class="container">
-    <div class="row">
-      <div ng-controller="MapCtrl">
-        <button ng-click="getData()">Show Map Data in console</button>
-      	<button ng-click="addMarker()">Add marker, nigger</button>
-      	<input type="text" ng-model="address">
-      	<button type="button" ng-click="searchAddress()">Search for address</button>
-      	<button type="button" ng-click="getPlace()">Search for address</button>
-      	<button type="button" ng-click="getAllPosts()">Get All Posts</button>
-        <br><br><br><br><br>
-      	<leaflet lf-center="center" width="94%" height="480px" markers="markers"></leaflet>
-      </div>
+<main class="search">
+  <div class="row">
+    <div class="col-lg-offset-3 col-lg-6 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10 col-xs-12">
+      <form class="">
+        <searchbox></searchbox>
+      </form>
     </div>
   </div>
 </main>
