@@ -1,0 +1,18 @@
+<div class="row postList">
+  <div class="postList-heading">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Название</div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Описание</div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Тип</div>
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">Дата</div>
+  </div>
+  <div class="postList-body">
+    <div class="postList-item" ng-repeat="post in vm.posts" ng-hide="vm.isLoading">
+      <div class="row">
+        <post-item item="post" ng-click="vm.openPost(post)"></post-item>
+      </div>
+    </div>
+  </div>
+  <div class="postList-loading" ng-show="vm.isLoading">
+    Загружаем..
+  </div>
+</div>

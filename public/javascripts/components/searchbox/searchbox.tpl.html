@@ -1,0 +1,16 @@
+<div class="form-group">
+  <input class="form-control"
+    ng-autocomplete
+    ng-model="vm.model"
+    details="vm.details"
+    options="vm.options"
+    type="text"
+    name="searchbox"
+    value="">
+</div>
+
+<div class="form-group">
+  <div ng-if="vm.model">
+    {{ vm.model }}
+  </div>
+</div>

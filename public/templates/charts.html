@@ -1,16 +1,53 @@
-<a href="/#/home" class="">назад на карту</a>
-<div ng-controller="ChartCtrl">
-	<p>Количество найденный вещей по годам</p>
-	<canvas id="pie" class="chart chart-pie"
-					chart-data='pieData' chart-labels="pieLabels">
-	</canvas>
-	<p>Соотношение найденых и потеряный вещей:</p>
-	<canvas id="pie2" class="chart chart-pie"
-					chart-data='lostData' chart-labels="lostLabels">
-	</canvas>
-	<p>lol</p>
-	<canvas id="bar" class="chart chart-bar"
-					chart-data="barData" chart-labels="barLabels"> chart-series="barSeries"
-	</canvas>
-</div>
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="сol-lg-offset-4 col-lg-2 col-md-offset-2 col-md-2 col-sm-offset-2 col-sm-2 col-xs-offset-1 col-xs-3">
+        <a class="link-block" ui-sref="create_post">
+          Создать пост
+        </a>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+        <a class="link-block" ui-sref="home">
+          Карта
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <a class="link-block" ui-sref="posts">
+          Все посты
+        </a>
+      </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+        <a class="link-block" ui-sref="charts">
+          Графики
+        </a>
+      </div>
+      <div class="col-lg-1 col-md-2 col-sm-2 col-xs-2">
+        <a class="link-block" ui-sref="logout">
+          Выйти
+        </a>
+      </div>
+    </div>
+  </div>
+</header>
+<main>
+  <div class="container">
+    <div class="row">
+      <div ng-controller="ChartCtrl">
+        <p>Количество найденный вещей по годам</p>
+        <canvas id="pie" class="chart chart-pie"
+          chart-data='pieData' chart-labels="pieLabels">
+        </canvas>
 
+        <p>Соотношение найденых и потеряный вещей:</p>
+        <canvas id="pie2" class="chart chart-pie"
+          chart-data='lostData' chart-labels="lostLabels">
+        </canvas>
+
+        <p>lol</p>
+        <canvas id="bar" class="chart chart-bar"
+          chart-data="barData" chart-labels="barLabels"> chart-series="barSeries"
+        </canvas>
+      </div>
+    </div>
+  </div>
+</main>

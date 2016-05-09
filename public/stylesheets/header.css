@@ -1,0 +1,15 @@
+.link-block {
+  display: block;
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.link-block:hover,
+.link-block:active,
+.link-block:focus {
+  color: #fff;
+  background-color: rgba(181, 115, 0, 0.27);
+  text-decoration: none;
+}

@@ -1,6 +1,6 @@
 angular.module('app')
 	.controller('MapCtrl', ['$scope', '$rootScope', '$state', 'leafletData', 'GeoSvc', 'PostsSvc', function($scope, $rootScope, $state, leafletData, GeoSvc, PostsSvc){
-		L.Icon.Default.imagePath = './stylesheets/images/';
+		L.Icon.Default.imagePath = '../../images';
 		angular.extend($scope, {
 			center: {
 				lat: 53.9,

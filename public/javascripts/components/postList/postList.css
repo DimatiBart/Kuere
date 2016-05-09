@@ -1,0 +1,24 @@
+post-list {
+  display: block;
+  margin-top: 25px;
+}
+
+.postList-heading,
+.postList-loading {
+  color: #fff;
+}
+
+.postList-body {
+  margin-top: 25px;
+}
+
+.postList-item {
+  border-bottom: 1px solid #a6a6a6;
+  padding: 6px 0;
+  color: #fff;
+  cursor: pointer;
+}
+
+.postList-item:hover {
+  opacity: 0.6;
+}

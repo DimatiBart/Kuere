@@ -3,36 +3,56 @@
  */
 
 require('angular');
-require('angular-ui-router');
-require('ui-leaflet');
-require('angular-simple-logger');
-require('leaflet');
-require('angular-ui-bootstrap');
-require('chart.js');
+require('angular-cookies');
 require('angular-chart.js');
+require('angular-ui-router');
+require('angular-ui-bootstrap');
+require('angular-simple-logger');
 
-/*web
+require('leaflet');
+require('ui-leaflet');
+require('ng-autocomplete');
+
+require('bootstrap/dist/css/bootstrap');
+require('../stylesheets/core');
+require('../stylesheets/fonts');
+require('../stylesheets/header');
+require('../stylesheets/home');
+require('../stylesheets/leaflet');
+
+/*
  * Expose
  */
 
 // Initializing app
-angular.module('app', ['ui.router', require('angular-cookies'), 'ui-leaflet', 'chart.js']);
+
+angular.module('app', [
+  'ui.router',
+  'ui-leaflet',
+  'chart.js',
+  'ngAutocomplete',
+  'ngCookies',
+]);
 
 // Configs
-require('./routes/config.js');
+require('./routes/config');
 
-// Directives
-
+// Components
+require('./components/loginForm/loginForm');
+require('./components/registerForm/registerForm');
+require('./components/searchbox/searchbox');
+require('./components/postItem/postItem');
+require('./components/postList/postList');
 
 // Controllers
-require('./controllers/AuthCtrl.js');
-require('./controllers/NavCtrl.js');
-require('./controllers/MapCtrl.js');
-require('./controllers/ChartCtrl.js');
-require('./controllers/PostsCtrl.js');
-
+require('./controllers/AuthCtrl');
+require('./controllers/NavCtrl');
+require('./controllers/MapCtrl');
+require('./controllers/ChartCtrl');
+require('./controllers/PostCtrl');
+require('./controllers/PostsCtrl');
 
 // Services
-require('./services/AuthSvc.js');
-require('./services/GeoSvc.js');
-require('./services/PostsSvc.js');
+require('./services/AuthSvc');
+require('./services/GeoSvc');
+require('./services/PostsSvc');
