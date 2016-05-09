@@ -37,7 +37,6 @@ angular.module('app')
 					//GeoSvc.getGeoData($scope.address, 'Минск') google geocoding vs Nominatim
 					GeoSvc.getGeoData($scope.address, '53.79619,27.39029|54.008172,27.734298')
 						.success(function(data){
-<<<<<<< HEAD
 							if (data.results.length == 0 ) {
 								alert('Извините, мы не нашли такого места');
 								return;
@@ -46,9 +45,7 @@ angular.module('app')
 							leafletData.getMap().then(function(map) {
 								map.panTo(new L.LatLng(pos.lat, pos.lng)).setZoom(15);
 							})
-=======
-							console.log(data);
->>>>>>> account
+
 						})
 						.error(function(error){
 							$scope.error = error;
